@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Study Desk // Premium Productivity Dashboard</title>
+    <meta
+      name="description"
+      content="A premium, AI-powered productivity desk featuring a Pomodoro timer, intelligent bento grid stats, a task planner, lo-fi music player, and weekly analytics."
+    />
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+  </head>
+  <body>
+    <!-- Background Ambient Particles & Noise -->
+    <div class="noise-overlay"></div>
+    <div class="particles-container" id="particles-container"></div>
+
+    <!-- Ambient Glow Lights -->
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-secondary"></div>
+
+    <!-- 1. STICKY NAVIGATION BAR -->
+    <header class="header-nav" id="header-nav">
+      <div class="container">
+        <nav class="nav-pill">
+          <!-- Logo -->
+          <a href="#" class="logo">
+            <i data-lucide="terminal"></i>
+            <span>RAVIXA<span class="text-gradient">DESK</span></span>
+          </a>
+
+          <!-- Navigation Menu -->
+          <ul class="nav-menu" id="nav-menu">
+            <li class="nav-item">
+              <a href="#" class="active" data-section="hero">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#workspace" data-section="workspace">Workspace</a>
+            </li>
+            <li class="nav-item">
+              <a href="#analytics" data-section="analytics">Analytics</a>
+            </li>
+            <div class="nav-indicator" id="nav-indicator"></div>
+          </ul>
+
+          <!-- CTA Actions -->
+          <div class="nav-actions">
+            <!-- <button class="btn btn-secondary btn-sm" id="btn-theme">
+            <i data-lucide="sparkles"></i>
+          </button> -->
+            <a href="#workspace" class="btn btn-glow-border btn-sm"
+              >Launch Desk</a
+            >
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <!-- Left Hero Content -->
+          <div class="hero-content reveal-fade-up">
+            <div class="hero-badge">
+              <i data-lucide="cpu"></i>
+              <span>Powered by Ravixa AI 2.0</span>
+            </div>
+            <h1 class="hero-title">
+              Your Premium <br />
+              <span class="text-gradient">AI Study Desk</span>
+            </h1>
+            <p class="hero-description id-typing" id="hero-typing-desc"></p>
+            <div class="hero-btns">
+              <a href="#workspace" class="btn btn-primary btn-ripple">
+                Enter Workspace
+                <i data-lucide="arrow-right"></i>
+              </a>
+              <a href="#analytics" class="btn btn-secondary btn-ripple">
+                View Stats
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Mockup (Asymmetrical Floating 3D Elements) -->
+          <div class="hero-mockup-wrapper reveal-fade-up">
+            <div class="hero-bg-glow"></div>
+
+            <!-- Main Central Hub Card -->
+            <div class="glass-panel mockup-main-card float-y">
+              <div
+                class="mockup-pulse-dot"
+                style="top: 15px; right: 15px"
+              ></div>
+
+              <div class="ai-core-container">
+                <div class="ai-core-glow"></div>
+                <div class="ai-core-ring">
+                  <div class="ai-core-node node-1"></div>
+                  <div class="ai-core-node node-2"></div>
+                  <div class="ai-core-node node-3"></div>
+                </div>
+                <div class="ai-core-orb"></div>
+              </div>
+
+              <div class="ai-stats-row">
+                <div class="ai-stat-item">
+                  <div class="ai-stat-val">98.4%</div>
+                  <div class="ai-stat-lbl">Focus Rate</div>
+                </div>
+                <div class="ai-stat-item">
+                  <div class="ai-stat-val">4.5h</div>
+                  <div class="ai-stat-lbl">Session Avg</div>
+                </div>
+                <div class="ai-stat-item">
+                  <div class="ai-stat-val">Active</div>
+                  <div class="ai-stat-lbl">AI Co-Pilot</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Sub-cards (Depth) -->
+            <div class="mockup-float-card float-card-1">
+              <i data-lucide="flame"></i>
+              <div>
+                <h4 style="font-size: 0.85rem; font-weight: 700">
+                  12 Day Streak
+                </h4>
+                <p style="font-size: 0.7rem; color: var(--text-muted)">
+                  Keep it up!
+                </p>
+              </div>
+            </div>
+
+            <div class="mockup-float-card float-card-2">
+              <i data-lucide="disc"></i>
+              <div>
+                <h4 style="font-size: 0.85rem; font-weight: 700">Lofi Focus</h4>
+                <p style="font-size: 0.7rem; color: var(--text-muted)">
+                  Track: Space Cruise
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WORKSPACE BENTO GRID -->
+    <section class="workspace-section" id="workspace">
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <h2 class="section-title text-gradient">Interactive Workspace</h2>
+          <p class="section-subtitle">
+            A bespoke suite of productivity tools designed to optimize your flow
+            state.
+          </p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- BENTO CARD 1: Study Hours (Wide 2-Column Card with Mini Area Chart) -->
+          <div
+            class="glass-panel interactive bento-card card-study-hours reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+            <div class="card-header">
+              <div class="card-icon icon-indigo">
+                <i data-lucide="clock"></i>
+              </div>
+              <div>
+                <h3>Study Hours</h3>
+                <p>Weekly study trends</p>
+              </div>
+              <div class="card-badge badge-indigo">+12.5% this week</div>
+            </div>
+
+            <div class="study-hours-content">
+              <div class="study-value-container">
+                <span class="study-val-num animate-counter" data-target="28.4"
+                  >0</span
+                >
+                <span class="study-val-unit">hours</span>
+              </div>
+
+              <!-- Mini SVG Area Chart -->
+              <div class="mini-chart-container">
+                <svg viewBox="0 0 300 100" class="mini-area-chart">
+                  <defs>
+                    <linearGradient id="chart-glow" x1="0" y1="0" x2="0" y2="1">
+                      <stop
+                        offset="0%"
+                        stop-color="var(--primary)"
+                        stop-opacity="0.3"
+                      />
+                      <stop
+                        offset="100%"
+                        stop-color="var(--primary)"
+                        stop-opacity="0"
+                      />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    class="chart-line"
+                    d="M0,80 Q30,60 60,70 T120,40 T180,50 T240,20 T300,30"
+                    fill="none"
+                    stroke="var(--primary)"
+                    stroke-width="3"
+                  />
+                  <path
+                    class="chart-area"
+                    d="M0,80 Q30,60 60,70 T120,40 T180,50 T240,20 T300,30 L300,100 L0,100 Z"
+                    fill="url(#chart-glow)"
+                  />
+                  <circle
+                    cx="240"
+                    cy="20"
+                    r="5"
+                    fill="var(--primary)"
+                    class="pulse-glow"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 2: Focus Score (Square Card with Radial Gauge) -->
+          <div
+            class="glass-panel interactive bento-card card-focus-score reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+            <div class="card-header">
+              <div class="card-icon icon-cyan">
+                <i data-lucide="activity"></i>
+              </div>
+              <div>
+                <h3>Focus Score</h3>
+                <p>Real-time cognitive rate</p>
+              </div>
+            </div>
+
+            <div class="focus-score-content">
+              <div class="radial-gauge-container">
+                <svg viewBox="0 0 100 100" class="radial-gauge">
+                  <circle
+                    class="gauge-bg"
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="transparent"
+                    stroke="rgba(255,255,255,0.04)"
+                    stroke-width="8"
+                  />
+                  <circle
+                    class="gauge-fill"
+                    id="focus-gauge-fill"
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="transparent"
+                    stroke="var(--accent-cyan)"
+                    stroke-width="8"
+                    stroke-dasharray="251.2"
+                    stroke-dashoffset="251.2"
+                  />
+                </svg>
+                <div class="gauge-label">
+                  <span class="gauge-val animate-counter" data-target="92"
+                    >0</span
+                  >
+                  <span class="gauge-pct">%</span>
+                </div>
+              </div>
+              <div class="focus-status">
+                <span class="status-dot green-pulse"></span>
+                <span class="status-text">Deep Work State</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 3: Completed Tasks (Square Card with Fan-Out Stack) -->
+          <div
+            class="glass-panel interactive bento-card card-completed-tasks reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+            <div class="card-header">
+              <div class="card-icon icon-emerald">
+                <i data-lucide="check-circle-2"></i>
+              </div>
+              <div>
+                <h3>Task Status</h3>
+                <p>Daily goals tracker</p>
+              </div>
+            </div>
+
+            <div class="completed-tasks-content">
+              <div class="tasks-summary">
+                <span
+                  class="tasks-completed-num animate-counter"
+                  id="tasks-completed-count"
+                  data-target="6"
+                  >0</span
+                >
+                <span class="tasks-slash">/</span>
+                <span class="tasks-total-num" id="tasks-total-count">8</span>
+              </div>
+
+              <!-- Interactive Stack Effect -->
+              <div class="task-stack-container" id="task-stack-container">
+                <div class="task-stack-card card-depth-1">
+                  <span>UI/UX Interface Refinement</span>
+                  <i data-lucide="check" class="task-done-icon"></i>
+                </div>
+                <div class="task-stack-card card-depth-2">
+                  <span>Core Timer Logic Integration</span>
+                  <i data-lucide="check" class="task-done-icon"></i>
+                </div>
+                <div class="task-stack-card card-depth-3">
+                  <span>Motivational Quotes API</span>
+                  <i data-lucide="check" class="task-done-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 4: Today's Goal (Vertical Fluid Gauge) -->
+          <div
+            class="glass-panel interactive bento-card card-today-goal reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+            <div class="card-header">
+              <div class="card-icon icon-peach">
+                <i data-lucide="target"></i>
+              </div>
+              <div>
+                <h3>Daily Progress</h3>
+                <p>Fluid goal completion</p>
+              </div>
+            </div>
+
+            <div class="today-goal-content">
+              <!-- Vertical Thermometer Fluid Gauge -->
+              <div class="fluid-gauge-wrapper">
+                <div class="fluid-gauge-track">
+                  <div
+                    class="fluid-gauge-fill"
+                    id="goal-fluid-fill"
+                    style="height: 0%"
+                  >
+                    <div class="fluid-bubbles"></div>
+                  </div>
+                </div>
+                <div class="fluid-gauge-labels">
+                  <span>100%</span>
+                  <span>75%</span>
+                  <span>50%</span>
+                  <span>25%</span>
+                  <span>0%</span>
+                </div>
+              </div>
+              <div class="goal-message" id="goal-message">
+                Getting warmed up!
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 5: Pomodoro Timer (Tall / Centered Accent Card) -->
+          <div
+            class="glass-panel interactive bento-card card-pomodoro reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+
+            <div class="pomodoro-modes">
+              <button class="pomo-mode-btn active" data-mode="work">
+                Focus
+              </button>
+              <button class="pomo-mode-btn" data-mode="short">
+                Short Break
+              </button>
+              <button class="pomo-mode-btn" data-mode="long">Long Break</button>
+            </div>
+
+            <div class="pomodoro-timer-display">
+              <!-- Large Glowing Progress Ring -->
+              <div class="timer-circle-wrapper">
+                <svg viewBox="0 0 220 220" class="timer-svg">
+                  <circle
+                    class="timer-bg-circle"
+                    cx="110"
+                    cy="110"
+                    r="95"
+                    fill="none"
+                    stroke="rgba(255, 255, 255, 0.03)"
+                    stroke-width="6"
+                  />
+                  <circle
+                    class="timer-progress-circle"
+                    id="timer-progress"
+                    cx="110"
+                    cy="110"
+                    r="95"
+                    fill="none"
+                    stroke="var(--primary)"
+                    stroke-width="6"
+                    stroke-dasharray="596.9"
+                    stroke-dashoffset="0"
+                  />
+                </svg>
+
+                <div class="timer-clock">
+                  <span class="timer-time" id="timer-time">25:00</span>
+                  <span class="timer-state" id="timer-state">STAY FOCUSED</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="pomodoro-controls">
+              <button
+                class="pomo-control-btn secondary"
+                id="btn-pomo-reset"
+                title="Reset Timer"
+              >
+                <i data-lucide="rotate-ccw"></i>
+              </button>
+              <button
+                class="pomo-control-btn primary btn-ripple"
+                id="btn-pomo-start"
+                title="Start Timer"
+              >
+                <i data-lucide="play" id="pomo-play-icon"></i>
+              </button>
+              <button
+                class="pomo-control-btn secondary"
+                id="btn-pomo-skip"
+                title="Skip Session"
+              >
+                <i data-lucide="skip-forward"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 6: Daily Goals / Todo List (Linear-Style List) -->
+          <div class="glass-panel bento-card card-todo reveal-fade-up">
+            <div class="card-header">
+              <div class="card-icon icon-rose">
+                <i data-lucide="list-todo"></i>
+              </div>
+              <div>
+                <h3>Daily Tasks</h3>
+                <p>Manage your objectives</p>
+              </div>
+            </div>
+
+            <div class="todo-content">
+              <!-- Progress Bar -->
+              <div class="todo-progress-container">
+                <div
+                  class="todo-progress-bar"
+                  id="todo-progress-bar"
+                  style="width: 0%"
+                ></div>
+              </div>
+
+              <!-- Tasks List -->
+              <ul class="todo-list" id="todo-list">
+                <!-- JS Injected Items -->
+              </ul>
+
+              <!-- Add Task Form -->
+              <form class="todo-form" id="todo-form">
+                <input
+                  type="text"
+                  class="todo-input"
+                  id="todo-input"
+                  placeholder="Add a new goal..."
+                  maxlength="50"
+                  required
+                />
+                <button type="submit" class="btn-add-task" id="btn-add-task">
+                  <i data-lucide="plus"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 7: Lo-Fi Music Player (Interactive Waveform UI) -->
+          <div
+            class="glass-panel interactive bento-card card-music reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+
+            <div class="music-player-container">
+              <!-- Album Art + Rotating Disk -->
+              <div class="music-art-wrapper">
+                <div
+                  class="music-vinyl rotate-album rotate-album-paused"
+                  id="music-vinyl"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&auto=format&fit=crop&q=60"
+                    alt="Album Art"
+                    class="album-art"
+                    id="album-art"
+                  />
+                  <div class="vinyl-center"></div>
+                </div>
+                <div class="music-track-info">
+                  <h4 class="track-title" id="track-title">Midnight Coffee</h4>
+                  <p class="track-artist" id="track-artist">Lofi Dreams</p>
+                </div>
+              </div>
+
+              <!-- Animated Waveform Visualizer -->
+              <div class="music-visualizer" id="music-visualizer">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+              </div>
+
+              <!-- Time tracker -->
+              <div class="player-timeline">
+                <span class="time-current" id="time-current">0:00</span>
+                <input
+                  type="range"
+                  class="timeline-slider"
+                  id="timeline-slider"
+                  min="0"
+                  max="100"
+                  value="0"
+                />
+                <span class="time-duration" id="time-duration">2:45</span>
+              </div>
+
+              <!-- Music Controls -->
+              <div class="music-controls-row">
+                <button class="music-btn" id="btn-prev" title="Previous Track">
+                  <i data-lucide="skip-back"></i>
+                </button>
+                <button
+                  class="music-btn play-btn btn-ripple"
+                  id="btn-play"
+                  title="Play/Pause"
+                >
+                  <i data-lucide="play" id="music-play-icon"></i>
+                </button>
+                <button class="music-btn" id="btn-next" title="Next Track">
+                  <i data-lucide="skip-forward"></i>
+                </button>
+                <div class="volume-container">
+                  <button class="music-btn" id="btn-mute" title="Mute/Unmute">
+                    <i data-lucide="volume-2" id="volume-icon"></i>
+                  </button>
+                  <input
+                    type="range"
+                    class="volume-slider"
+                    id="volume-slider"
+                    min="0"
+                    max="100"
+                    value="70"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 8: Mini Calendar -->
+          <div
+            class="glass-panel interactive bento-card card-calendar reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+
+            <div class="calendar-container">
+              <div class="calendar-header-row">
+                <h3 id="cal-month-year">June 2026</h3>
+                <div class="calendar-nav-btns">
+                  <button id="cal-prev">
+                    <i data-lucide="chevron-left"></i>
+                  </button>
+                  <button id="cal-next">
+                    <i data-lucide="chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="calendar-weekdays">
+                <div>Su</div>
+                <div>Mo</div>
+                <div>Tu</div>
+                <div>We</div>
+                <div>Th</div>
+                <div>Fr</div>
+                <div>Sa</div>
+              </div>
+
+              <div class="calendar-days" id="calendar-days">
+                <!-- JS Injected Days -->
+              </div>
+            </div>
+          </div>
+
+          <!-- BENTO CARD 9: Editorial Quote Card -->
+          <div
+            class="glass-panel interactive bento-card card-quote reveal-fade-up"
+            data-tilt
+          >
+            <div class="mouse-glow-bg"></div>
+            <div class="quote-bg-mark">“</div>
+
+            <div class="quote-content-wrapper">
+              <p class="quote-text" id="quote-text">Loading inspiration...</p>
+              <div class="quote-footer-row">
+                <span class="quote-author" id="quote-author">— AI Guide</span>
+                <button
+                  class="quote-refresh-btn"
+                  id="btn-quote-refresh"
+                  title="New Quote"
+                >
+                  <i data-lucide="rotate-cw" id="quote-refresh-icon"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PREMIUM STATISTICS SECTION (GLOWING AREA & BAR CHART) -->
+    <section class="analytics-section" id="analytics">
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <h2 class="section-title text-gradient-cyan">Analytics & Insights</h2>
+          <p class="section-subtitle">
+            A deep-dive analysis of your weekly cognitive performance and study
+            cycles.
+          </p>
+        </div>
+
+        <div class="analytics-grid">
+          <!-- Main Large Area Chart Card (Asymmetrical layout) -->
+          <div class="glass-panel analytics-large-card reveal-fade-up">
+            <div class="analytics-card-header">
+              <div>
+                <h3>Weekly Performance Index</h3>
+                <p>Focus intensity vs. active hours</p>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <span class="legend-dot bg-indigo"></span> Active Hours
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot bg-cyan"></span> Focus Intensity
+                </div>
+              </div>
+            </div>
+
+            <!-- Premium Custom SVG Chart -->
+            <div class="large-chart-container">
+              <svg
+                viewBox="0 0 800 350"
+                class="performance-chart"
+                id="performance-chart"
+              >
+                <!-- Gradients for Chart Fills -->
+                <defs>
+                  <linearGradient
+                    id="hours-gradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="var(--primary)"
+                      stop-opacity="0.35"
+                    />
+                    <stop
+                      offset="100%"
+                      stop-color="var(--primary)"
+                      stop-opacity="0.01"
+                    />
+                  </linearGradient>
+                  <linearGradient
+                    id="focus-gradient"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="var(--accent-cyan)"
+                      stop-opacity="0.25"
+                    />
+                    <stop
+                      offset="100%"
+                      stop-color="var(--accent-cyan)"
+                      stop-opacity="0.01"
+                    />
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid Lines -->
+                <g
+                  class="chart-grid-lines"
+                  stroke="rgba(255,255,255,0.03)"
+                  stroke-width="1"
+                >
+                  <line x1="80" y1="50" x2="750" y2="50" />
+                  <line x1="80" y1="120" x2="750" y2="120" />
+                  <line x1="80" y1="190" x2="750" y2="190" />
+                  <line x1="80" y1="260" x2="750" y2="260" />
+                  <line x1="80" y1="300" x2="750" y2="300" />
+                </g>
+
+                <!-- X & Y Axes Labels -->
+                <g
+                  class="chart-axes-labels"
+                  fill="var(--text-muted)"
+                  font-size="12"
+                  font-family="var(--font-body)"
+                >
+                  <text x="45" y="55">100%</text>
+                  <text x="45" y="125">75%</text>
+                  <text x="45" y="195">50%</text>
+                  <text x="45" y="265">25%</text>
+                  <text x="52" y="305">0%</text>
+
+                  <!-- X Axis Days -->
+                  <text x="100" y="325">Mon</text>
+                  <text x="200" y="325">Tue</text>
+                  <text x="300" y="325">Wed</text>
+                  <text x="400" y="325">Thu</text>
+                  <text x="500" y="325">Fri</text>
+                  <text x="600" y="325">Sat</text>
+                  <text x="700" y="325">Sun</text>
+                </g>
+
+                <!-- Areas under curves -->
+                <path
+                  d="M110,300 L110,210 Q200,120 200,160 T300,100 T400,180 T500,110 T600,190 T710,130 L710,300 Z"
+                  fill="url(#hours-gradient)"
+                />
+                <path
+                  d="M110,300 L110,170 Q200,190 200,140 T300,160 T400,110 T500,150 T600,90 T710,110 L710,300 Z"
+                  fill="url(#focus-gradient)"
+                />
+
+                <!-- Main Curve Lines -->
+                <path
+                  d="M110,210 Q200,120 200,160 T300,100 T400,180 T500,110 T600,190 T710,130"
+                  fill="none"
+                  stroke="var(--primary)"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M110,170 Q200,190 200,140 T300,160 T400,110 T500,150 T600,90 T710,110"
+                  fill="none"
+                  stroke="var(--accent-cyan)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-dasharray="4 4"
+                />
+
+                <!-- Glowing Data Nodes (Interactive visual look) -->
+                <g class="chart-nodes">
+                  <circle
+                    cx="300"
+                    cy="100"
+                    r="5"
+                    fill="var(--primary)"
+                    stroke="var(--text-primary)"
+                    stroke-width="1.5"
+                  />
+                  <circle
+                    cx="500"
+                    cy="110"
+                    r="5"
+                    fill="var(--primary)"
+                    stroke="var(--text-primary)"
+                    stroke-width="1.5"
+                  />
+                  <circle
+                    cx="600"
+                    cy="90"
+                    r="5"
+                    fill="var(--accent-cyan)"
+                    stroke="var(--text-primary)"
+                    stroke-width="1.5"
+                  />
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Side Column: Distribution Bar Chart -->
+          <div class="glass-panel analytics-side-card reveal-fade-up">
+            <div class="analytics-card-header">
+              <h3>Focus Distribution</h3>
+              <p>Time spent per category</p>
+            </div>
+
+            <div class="distribution-bars">
+              <div class="dist-bar-item">
+                <div class="dist-bar-header">
+                  <span>UI/UX Design</span>
+                  <span>40%</span>
+                </div>
+                <div class="dist-bar-track">
+                  <div class="dist-bar-fill bg-indigo" style="width: 40%"></div>
+                </div>
+              </div>
+
+              <div class="dist-bar-item">
+                <div class="dist-bar-header">
+                  <span>Core Engineering</span>
+                  <span>35%</span>
+                </div>
+                <div class="dist-bar-track">
+                  <div class="dist-bar-fill bg-cyan" style="width: 35%"></div>
+                </div>
+              </div>
+
+              <div class="dist-bar-item">
+                <div class="dist-bar-header">
+                  <span>Deep Research</span>
+                  <span>15%</span>
+                </div>
+                <div class="dist-bar-track">
+                  <div
+                    class="dist-bar-fill bg-emerald"
+                    style="width: 15%"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="dist-bar-item">
+                <div class="dist-bar-header">
+                  <span>Administrative</span>
+                  <span>10%</span>
+                </div>
+                <div class="dist-bar-track">
+                  <div class="dist-bar-fill bg-peach" style="width: 10%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dist-summary-box">
+              <i data-lucide="info"></i>
+              <p>
+                Your optimal flow state occurs between
+                <strong>9:00 AM and 11:30 AM</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MODERN FOOTER WITH SOCIAL LINKS -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <i data-lucide="terminal"></i>
+              <span>RAVIXA<span class="text-gradient">DESK</span></span>
+            </a>
+            <p class="footer-tagline">
+              Crafting the future of personal productivity through design and
+              artificial intelligence.
+            </p>
+          </div>
+
+          <div class="footer-links-group">
+            <div class="footer-col">
+              <h4>Product</h4>
+              <ul>
+                <li><a href="#workspace">Workspace</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#">Security</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Changelog</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-col">
+              <h4>Connect</h4>
+              <div class="social-icons">
+                <a href="#" class="social-btn" title="Twitter"
+                  ><i data-lucide="twitter"></i
+                ></a>
+                <a href="#" class="social-btn" title="GitHub"
+                  ><i data-lucide="github"></i
+                ></a>
+                <a href="#" class="social-btn" title="Discord"
+                  ><i data-lucide="slack"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 RAVIXADESK All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Lucide Icons CDN (JS package to convert HTML icons into SVG) -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+
+    <!-- JavaScript Modules -->
+    <script src="js/effects.js"></script>
+    <script src="js/pomodoro.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+/* Core Keyframes & Animations */
+
+/* Floating animation (Multi-axis) */
+@keyframes floatY {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatX {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+.float-y {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+.float-y-slow {
+  animation: floatY 8s ease-in-out infinite;
+}
+
+.float-y-fast {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+/* Pulsing soft glows */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Typing cursor blink */
+@keyframes blinkCursor {
+  0%, 100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--primary);
+  }
+}
+
+.typing-cursor::after {
+  content: '|';
+  margin-left: 2px;
+  animation: blinkCursor 1s step-end infinite;
+  color: var(--primary);
+}
+
+/* Particle movement (Background) */
+@keyframes particleDrift {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Border Beam Animation (rotating border effect) */
+@keyframes borderBeam {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* Waveform Visualizer Animation */
+@keyframes waveBar {
+  0%, 100% {
+    transform: scaleY(0.2);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.wave-bar-anim {
+  animation: waveBar 1.2s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+/* Button Ripple Effect Style */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.ripple-primary {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Rotating Album Art */
+@keyframes rotateAlbum {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-album {
+  animation: rotateAlbum 20s linear infinite;
+}
+
+.rotate-album-paused {
+  animation-play-state: paused;
+}
+
+/* Rotating refresh button */
+@keyframes spinRefresh {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-once {
+  animation: spinRefresh 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background animated radial gradients */
+@keyframes bgMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.bg-animate-gradients {
+  background-size: 200% 200%;
+  animation: bgMove 15s ease infinite;
+}
